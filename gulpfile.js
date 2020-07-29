@@ -73,6 +73,8 @@ gulp.task('browser-sync', function(){
 gulp.task('export', async function(){
     let buildHtml = gulp.src(source_folder + '/*.html')
     .pipe(gulp.dest(dist))
+    let buildIcon = gulp.src(source_folder + '/favicon/**/*')
+    .pipe(gulp.dest(dist +'/favicon'))
     let buildCss = gulp.src(source_folder +'/css/*.css')
     .pipe(gulp.dest(dist +'/css'))
     let buildFonts = gulp.src(source_folder + '/fonts/**/*.*')
