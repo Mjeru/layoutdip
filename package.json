@@ -1,0 +1,61 @@
+{
+  "name": "layoutdip",
+  "version": "1.0.0",
+  "description": "layoutwork",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mjeru/layoutdip.git"
+  },
+  "keywords": [
+    "layout"
+  ],
+  "author": "kosmynin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mjeru/layoutdip/issues"
+  },
+  "homepage": "https://github.com/Mjeru/layoutdip#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.10.4",
+    "babel-loader": "v8.0.0-beta.0",
+    "browser-sync": "^2.26.12",
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-babel": "^8.0.0-beta.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-jsmin": "^0.1.5",
+    "gulp-minify": "^3.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-uglify-es": "^2.0.0",
+    "gulp-webp": "^4.0.1",
+    "gulp-webp-html": "^1.0.2",
+    "jquery": "^3.5.1",
+    "magnific-popup": "^1.1.0",
+    "normalize-css": "^2.3.1",
+    "slick-carousel": "^1.8.1"
+  },
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "ie >= 8",
+    "edge >= 15",
+    "ie_mob >= 10",
+    "ff >= 45",
+    "chrome >= 45",
+    "safari >= 7",
+    "opera >= 23",
+    "ios >= 7",
+    "android >= 4",
+    "bb >= 10"
+  ]
+}
