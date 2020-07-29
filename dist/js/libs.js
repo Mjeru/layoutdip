@@ -14541,9 +14541,11 @@ $(
                                } else { // если все прошло ок
                                    alert('Письмо отвравлено!');
                                    $(`.popup`).animate({ opacity: 0 }, 200, `linear`);
+				$(`.popup-overlay`).animate({ opacity: 0 }, 200, `linear`);
 				enableScroll();
 				window.setTimeout(() => {
 					$(`.popup`).addClass(`visually-hidden`);
+					$(`.popup-overlay`).addClass(`visually-hidden`);
 				}, 350);
                                     // пишем что все ок
                                }
