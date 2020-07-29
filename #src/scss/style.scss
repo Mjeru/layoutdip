@@ -189,24 +189,22 @@ display: none;
 .header__tel:hover {
 	color: #f53f4f;
 }
-.popup {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 21;
-	width: 100vw;
-	height: 100%;
-	opacity: 0;
-	background-color: rgba(0, 0, 0, 0.2);
-	transition: opacity 0.3s;
-	overflow-y: scroll;
-}
+
 .callForm label {
 	font-size: 0;
 }
 .popup__header {
 	font-size: 27px;
 	margin-bottom: 20px;
+}
+.popup-overlay {
+    z-index: 29;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.07);
 }
 .popup__input {
 	font-size: 16px;
@@ -238,21 +236,50 @@ display: none;
 	background-color: #ff4e2e;
 }
 
-.popup__container {
-	top: 50%;
-	left: 50%;
+.popup {
+	top: 50vh;
+	left: 50vw;
 	transform: translate(-50%, -50%);
-	max-width: 500px;
+    max-width: 500px;
+    max-height: 100%;
 	width: 80%;
 	background-color: #fbfbfb;
-	z-index: 22;
-	position: absolute;
+	z-index: 30;
+	position: fixed;
 	padding: 20px 20px 40px 20px;
 	background-color: #fbfbfb;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* overflow-y: scroll; */
+    overflow-y: auto;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.07);
+}
+.popup__close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    &::before{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        content: "";
+        width: 100%;
+        height: 2px;
+        background-color: #f53f4f;
+        transform: rotate(-45deg); 
+    }
+    &::after{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        content: "";
+        width: 100%;
+        height: 2px;
+        background-color: #f53f4f;
+        transform:  rotate(45deg);
+    }
 }
 .header__link,
 .social__link {

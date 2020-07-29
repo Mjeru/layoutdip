@@ -2,7 +2,7 @@ const source_folder = '#src',
     dist = 'dist',
     gulp = require('gulp'),
     sass = require('gulp-sass'),
-    browserSync = require('browser-sync'),
+    browserSync = require('browser-sync').create(),
     uglify = require('gulp-uglify-es').default,
     concat = require('gulp-concat'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -20,7 +20,7 @@ gulp.task('scss', async function(){
         .pipe(sass({outputStyle: "expanded"}))
         .pipe(autoprefixer())
         .pipe(gulp.dest(source_folder + '/css'))
-        .pipe(browserSync.reload({stream:true}))
+        .pipe(browserSync.stream());
 }) 
 gulp.task('scssCompress', async function(){
     return gulp.src(source_folder + '/scss/*.scss')
@@ -28,7 +28,7 @@ gulp.task('scssCompress', async function(){
         .pipe(autoprefixer())
         .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest(source_folder + '/css'))
-        .pipe(browserSync.reload({stream:true}))
+        .pipe(browserSync.stream());
 }) 
 gulp.task('css', async function() {
     return gulp.src(source_folder + '/css/style.css')
@@ -44,7 +44,11 @@ gulp.task('js', async function(){
     ])
     .pipe(concat('libs.js'))
     .pipe(gulp.dest(source_folder + '/js'))
-    .pipe(browserSync.reload({stream:true}))
+    .pipe(browserSync.stream());
+})
+gulp.task('bs', async function(){
+    return gulp.src(source_folder)
+    .pipe(browserSync.stream());
 })
 gulp.task('jsCompress', function () {
     return gulp.src(source_folder + '/js/libs.js')
@@ -57,9 +61,11 @@ gulp.task('jsCompress', function () {
     
 });
 
+
 gulp.task('watch', function(){
-    gulp.watch([source_folder + '/scss', '!css/file.css'], gulp.parallel('scss'))
-    gulp.watch([source_folder + '/js', !source_folder +'/js/libs.js'], gulp.parallel('js'))
+    gulp.watch(source_folder + '/scss', gulp.parallel('scss'))
+    gulp.watch(source_folder + '/js/main.js', gulp.parallel('js'))
+    gulp.watch(source_folder + '/*.html', gulp.parallel('bs'))
 })
 
 gulp.task('browser-sync', function(){

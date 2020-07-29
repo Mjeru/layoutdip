@@ -14492,7 +14492,6 @@ $(
 	(function () {
 		function disableScroll() {
 			let padding = window.innerWidth - document.body.offsetWidth;
-			console.log(padding);
 			let pagePosition = window.scrollY;
 			document.body.classList.add(`lock`);
 			document.body.dataset.position = pagePosition;
@@ -14507,6 +14506,13 @@ $(
 			window.scroll({top: pagePosition, left: 0} )
 			document.body.removeAttribute(`dataset`);
 			document.body.removeAttribute(`style`);
+		}
+		function popupAnimate(){
+			$(`.popup`).removeClass(`visually-hidden`);
+			$(`.popup-overlay`).removeClass(`visually-hidden`);
+            document.getElementById("firstInput").focus();
+			$(`.popup`).animate({ opacity: 1 }, 200, `linear`);
+			$(`.popup-overlay`).animate({ opacity: 1 }, 200, `linear`);
 		}
 		$(document).ready(function () {
 
@@ -14535,9 +14541,11 @@ $(
                                } else { // если все прошло ок
                                    alert('Письмо отвравлено!');
                                    $(`.popup`).animate({ opacity: 0 }, 200, `linear`);
+				$(`.popup-overlay`).animate({ opacity: 0 }, 200, `linear`);
 				enableScroll();
 				window.setTimeout(() => {
 					$(`.popup`).addClass(`visually-hidden`);
+					$(`.popup-overlay`).addClass(`visually-hidden`);
 				}, 350);
                                     // пишем что все ок
                                }
@@ -14611,7 +14619,6 @@ $(
 
 			$(".header__list-item").on("click", function (e) {
                 e.preventDefault();
-                console.log(topPadding);
 				$("html,body").animate(
 					{
 						scrollTop:
@@ -14700,36 +14707,37 @@ $(
 		});
 		$(`.header__link`).on(`click`, function (e) {
 			disableScroll()
-            $(`.popup`).removeClass(`visually-hidden`);
-            document.getElementById("firstInput").focus();
-			$(`.popup`).animate({ opacity: 1 }, 200, `linear`);
+			popupAnimate()
 		});
 		$(`.social__link`).on(`click`, function (e) {
 			disableScroll();
-            $(`.popup`).removeClass(`visually-hidden`);
-            document.getElementById("firstInput").focus();
-			$(`.popup`).animate({ opacity: 1 }, 200, `linear`);
+            popupAnimate()
 		});
 		$(`.exapmles_link`).on(`click`, function (e) {
 			disableScroll()
-            $(`.popup`).removeClass(`visually-hidden`);
-            document.getElementById("firstInput").focus();
-			$(`.popup`).animate({ opacity: 1 }, 200, `linear`);
+			popupAnimate()
 		});
 		$(`.tel-icon`).on(`click`, function (e) {
 			disableScroll()
-            $(`.popup`).removeClass(`visually-hidden`);
-            document.getElementById("firstInput").focus();
-			$(`.popup`).animate({ opacity: 1 }, 200, `linear`);
+            popupAnimate()
 		});
-		$(`.popup`).on(`click`, function (e) {
-			if (e.target == $(`.popup`)[0]) {
+		$(`.popup-overlay`).on(`click`, function (e) {
 				$(`.popup`).animate({ opacity: 0 }, 200, `linear`);
+				$(`.popup-overlay`).animate({ opacity: 0 }, 200, `linear`);
 				enableScroll();
 				window.setTimeout(() => {
 					$(`.popup`).addClass(`visually-hidden`);
+					$(`.popup-overlay`).addClass(`visually-hidden`);
 				}, 350);
-			}
+		});
+		$(`.popup__close`).on(`click`, function (e) {
+				$(`.popup`).animate({ opacity: 0 }, 200, `linear`);
+				$(`.popup-overlay`).animate({ opacity: 0 }, 200, `linear`);
+				enableScroll();
+				window.setTimeout(() => {
+					$(`.popup`).addClass(`visually-hidden`);
+					$(`.popup-overlay`).addClass(`visually-hidden`);
+				}, 350);
 		});
 	})()
 );
